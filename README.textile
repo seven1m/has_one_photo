@@ -1,0 +1,61 @@
+h1. acts_as_photo Rails Plugin
+
+Allows a model to have an attached photo (per record/instance). When a photo is saved to the model, the original photo file is placed in the specified path, along with several resized versions, based on the specified sizes (see below).
+
+*Note:* Only JPEG images are supported at this time.
+
+h2. Requirements
+
+* ImageMagick
+* MiniMagick (*not* RMagick)
+
+h2. Install
+
+<pre>
+script/plugin install git://github.com/seven1m/acts_as_photo.git
+</pre>
+
+h2. Setup
+
+<pre>
+  class Person < ActiveRecord::Base
+    PHOTO_SIZES = {
+      :tn => '32x32',
+      :small => '75x75',
+      :medium => '150x150',
+      :large => '400x400'
+    }
+    acts_as_photo '/db/photos/people', PHOTO_SIZES
+  end
+</pre>
+
+<pre>
+  ActionController::Routing::Routes.draw do |map|
+    map.connect 'people/photo/:id', :controller => 'people', :action => 'photo', :requirements => { :id => /.*/ }
+  end
+</pre>
+
+<pre>
+  class PeopleController < ApplicationController
+    # url looks like "/people/photo/123.jpg" or "/people/photo/123.small.jpg" or "/people/photo/123.tn.jpg"
+    def photo; send_photo @person; end
+  end
+</pre>
+
+h2. Usage
+
+<pre>
+  person.photo = file_like_object # form submission, File.open, etc.
+  # or
+  person.photo = 'http://example.com/tim.jpg'
+
+  person.rotate_photo('-90') # degrees
+
+  person.has_photo?
+  # => true
+
+  person.photo_path
+  # => 'db/photos/123.jpg'
+
+  person.photo = nil # deletes the photo file(s)
+</pre>
