@@ -25,7 +25,7 @@ h2. Setup
       :medium => '150x150',
       :large => '400x400'
     }
-    acts_as_photo '/db/photos/people', PHOTO_SIZES
+    acts_as_photo File.join(RAILS_ROOT, 'db/photos/people'), PHOTO_SIZES
   end
 </pre>
 
