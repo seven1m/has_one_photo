@@ -65,7 +65,7 @@ For an example of using a singular resource "Photo" for several
 resources, check out the OneBody project:
 
 * [routes.rb](http://github.com/seven1m/onebody/tree/master/config/routes.rb)
-* [photos_controller.rb](http://github.com/seven1m/onebody/tree/master/app/controllers/photos_controller.rb)
+* [photos\_controller.rb](http://github.com/seven1m/onebody/tree/master/app/controllers/photos_controller.rb)
 
 Usage
 -----
