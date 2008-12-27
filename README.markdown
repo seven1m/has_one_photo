@@ -31,15 +31,15 @@ Setup
 
 In the model:
 
-  class Person < ActiveRecord::Base
-    PHOTO_SIZES = {
-      :tn => '32x32',
-      :small => '75x75',
-      :medium => '150x150',
-      :large => '400x400'
-    }
-    acts_as_photo Rails.root + 'db/photos/people', PHOTO_SIZES
-  end
+    class Person < ActiveRecord::Base
+      PHOTO_SIZES = {
+        :tn => '32x32',
+        :small => '75x75',
+        :medium => '150x150',
+        :large => '400x400'
+      }
+      acts_as_photo Rails.root + 'db/photos/people', PHOTO_SIZES
+    end
 
 In your controller(s), you need an action that calls `send_photo(obj)`,
 with "obj" being an instance of the record with the photo.
