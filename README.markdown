@@ -1,4 +1,4 @@
-acts_as_photo
+acts\_as\_photo
 =============
 
 Uber simple Rails plugin giving a model a single attached photo per record.
