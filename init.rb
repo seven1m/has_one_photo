@@ -1,1 +1,1 @@
-require 'acts_as_photo'
+require 'has_one_photo'

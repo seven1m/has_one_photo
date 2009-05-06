@@ -14,24 +14,26 @@ module Seven1m
     end
 
     module ClassMethods
-      def acts_as_photo(storage_path, sizes)
+      def has_one_photo(options)
+        options.symbolize_keys!
+        # storage_path, sizes
         photo_env = Rails.env == 'production' ? '' : ('.' + Rails.env)
-        sizes.each do |name, dimensions|
+        options[:sizes].each do |name, dimensions|
           class_eval <<-END
             def photo_#{name.to_s}_path
-              File.join('#{storage_path}', id.to_s + "#{photo_env}.#{name.to_s}.jpg")
+              File.join('#{options[:path]}', id.to_s + "#{photo_env}.#{name.to_s}.jpg")
             end
           END
         end
         class_eval <<-END
-          PHOTO_SIZES = #{sizes.inspect}
+          PHOTO_SIZES = #{options[:sizes].inspect}
           
           def has_photo?
             @has_photo ||= FileTest.exists?(photo_path)
           end
           
           def photo_path
-            File.join('#{storage_path}', id.to_s + '#{photo_env}.full.jpg')
+            File.join('#{options[:path]}', id.to_s + '#{photo_env}.full.jpg')
           end
           
           def photo_path_from_params(params)

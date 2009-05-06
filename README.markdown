@@ -1,5 +1,5 @@
-acts\_as\_photo
-=============
+has\_one\_photo
+===============
 
 Uber simple Rails plugin giving a model a single attached photo per record.
 When a photo is saved to the model, sized photo files are placed in the specified path,
@@ -18,13 +18,13 @@ Install
 
 Add the following to your environment.rb Initializer block:
 
-    config.gem 'seven1m-acts_as_photo', :source => 'http://gems.github.com', :lib => 'acts_as_photo'
+    config.gem 'seven1m-has_one_photo', :source => 'http://gems.github.com', :lib => 'has_one_photo'
 
 Then run "sudo rake gems:install" to install as a dependency.
 
 Or, use the traditional plugin install method:
 
-    script/plugin install git://github.com/seven1m/acts_as_photo.git
+    script/plugin install git://github.com/seven1m/has_one_photo.git
 
 Setup
 -----
@@ -38,7 +38,7 @@ In the model:
         :medium => '150x150',
         :large => '400x400'
       }
-      acts_as_photo Rails.root + 'db/photos/people', PHOTO_SIZES
+      has_one_photo :path => Rails.root + 'db/photos/people', :sizes => PHOTO_SIZES
     end
 
 In your controller(s), you need an action that calls `send_photo(obj)`,
