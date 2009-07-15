@@ -118,12 +118,9 @@ class ActionController::Base
     if object.has_photo?
       path = object.photo_path_from_params(params)
       updated_time = File.stat(path).mtime
-      browser_time = Time.rfc2822(request.env["HTTP_IF_MODIFIED_SINCE"]) rescue nil
-      if browser_time.nil? or updated_time > browser_time
-        response.headers['Last-Modified'] = updated_time.httpdate
+      if stale?(:last_modified => updated_time, :etag => object)
+        expires_in 1.day
         send_file path, :type => 'image/jpeg', :disposition => 'inline'
-      else
-        render :text => 'photo not modified', :status => 304
       end
     else
       render :text => 'photo unavailable', :status => 404

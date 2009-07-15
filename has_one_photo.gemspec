@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name     = "has_one_photo"
-  s.version  = "0.3.0"
+  s.version  = "1.0.0"
   s.summary  = "Uber simple Rails plugin giving a model a single attached photo per record."
   s.email    = "tim@timmorgan.org"
   s.homepage = "http://github.com/seven1m/has_one_photo"
