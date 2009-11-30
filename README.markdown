@@ -16,14 +16,6 @@ Requirements
 Install
 -------
 
-Add the following to your environment.rb Initializer block:
-
-    config.gem 'seven1m-has_one_photo', :source => 'http://gems.github.com', :lib => 'has_one_photo'
-
-Then run "sudo rake gems:install" to install as a dependency.
-
-Or, use the traditional plugin install method:
-
     script/plugin install git://github.com/seven1m/has_one_photo.git
 
 Setup
